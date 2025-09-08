@@ -3,7 +3,7 @@ I’ve been trying to work on myself and cut down on addictive stuff like Instag
 So, with a little help from ChatGPT, I set up a way to completely remove YouTube Shorts. Here’s how you can do it too:
 ________________________________________
 Step 1: Tampermonkey
-1.  Download and install the Tampermonkey extension.
+1.  Download and install the Tampermonkey extension from here https://www.tampermonkey.net .
 2.  Go to the Tampermonkey dashboard (top-right corner), click the “+” button, and paste this code:
 // ==UserScript==
 // @name         YouTube Shorts Terminator 2025
@@ -90,7 +90,7 @@ Step 1: Tampermonkey
 4.  Go to “Utilities” and click “Check for Userscript Updates”.
 ________________________________________
 Step 2: uBlock Origin
-1.  Download uBlock Origin from its official site.
+1.  Download uBlock Origin from https://ublockorigin.com here .
 2.  Click on the uBlock extension, then click “Settings” in the bottom-right corner.
 3.  Copy and paste the following code into uBlock’s “My Filters”:
 ! ====== Remove Shorts button in the left mini guide (sidebar) ======
