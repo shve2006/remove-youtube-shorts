@@ -90,7 +90,7 @@ Step 1: Tampermonkey
 4.  Go to “Utilities” and click “Check for Userscript Updates”.
 ________________________________________
 Step 2: uBlock Origin
-1.  Download uBlock Origin from https://ublockorigin.com here .
+1.  Download and install the uBlock extension from here https://ublockorigin.com .
 2.  Click on the uBlock extension, then click “Settings” in the bottom-right corner.
 3.  Copy and paste the following code into uBlock’s “My Filters”:
 ! ====== Remove Shorts button in the left mini guide (sidebar) ======
