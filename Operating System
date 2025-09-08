@@ -29,3 +29,8 @@ Tampermonkey: Yes ✅ (limited; some scripts may not run due to browser restrict
 uBlock Origin doesn’t officially work on iOS or Android browsers; use AdGuard or 1Blocker instead.
 Tampermonkey apps exist for iOS and Android, but some scripts may be limited due to browser restrictions.
 Desktop browsers (Windows, macOS, Linux) have full support.
+
+💡 Notes2:
+The scripts or filters to remove YouTube Shorts do NOT work in the YouTube app on Android or iOS. They
+only work when using YouTube in a web browser (like Chrome, Firefox, or Safari). For mobile apps, you need
+alternatives like AdGuard or 1Blocker to block or filter content.
