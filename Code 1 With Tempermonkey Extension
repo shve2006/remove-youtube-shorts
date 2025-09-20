@@ -1,44 +1,29 @@
 // ==UserScript==
-// @name         Kill YouTube Shorts Button (Top Left, English UI)
+// @name         YouTube Shorts Button Killer (Optimized)
 // @namespace    http://tampermonkey.net/
-// @version      6.0
-// @description  Removes the "Shorts" icon from the top-left YouTube mini guide near the logo (English UI only, Edge/Desktop tested and stable on SPA navs)
-// @author       You
+// @version      1.0
+// @description  Hide YouTube Shorts button (Top Left) efficiently
 // @match        https://www.youtube.com/*
-// @grant        none
+// @run-at       document-idle
 // ==/UserScript==
 
-(function () {
+(function() {
     'use strict';
 
-    function removeShortsButton() {
-        const buttons = document.querySelectorAll('ytd-mini-guide-entry-renderer');
-
-        buttons.forEach(btn => {
-            const label = btn.getAttribute('aria-label')?.toLowerCase();
-            const text = btn.innerText?.trim().toLowerCase();
-            const link = btn.querySelector('a')?.getAttribute('href');
-
-            if (
-                (text === 'shorts') ||
-                (label && label.includes('shorts')) ||
-                (link && link.startsWith('/shorts'))
-            ) {
-                btn.style.display = 'none';
-            }
-        });
+    function hideShortsButton() {
+        const shortsButton = document.querySelector('ytd-mini-guide-entry-renderer[title="Shorts"]');
+        if (shortsButton) {
+            shortsButton.style.display = 'none';
+        }
     }
 
-    // Run initially
-    removeShortsButton();
+    let lastUrl = location.href;
+    new MutationObserver(() => {
+        if (location.href !== lastUrl) {
+            lastUrl = location.href;
+            hideShortsButton();
+        }
+    }).observe(document.body, {childList: true, subtree: true});
 
-    // Observe for YouTube's dynamic page behavior
-    const observer = new MutationObserver(() => {
-        removeShortsButton();
-    });
-
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+    hideShortsButton();
 })();
