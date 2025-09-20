@@ -1,37 +1,31 @@
 // ==UserScript==
-// @name         YouTube Shorts Terminator 2025
+// @name         YouTube Shorts Terminator
 // @namespace    http://tampermonkey.net/
-// @version      3.0
-// @description  Removes all YouTube Shorts and redirects shorts URLs
-// @author       ChatGPT
+// @version      1.0
+// @description  Remove all YouTube Shorts everywhere efficiently
 // @match        https://www.youtube.com/*
-// @grant        none
+// @run-at       document-idle
 // ==/UserScript==
 
-(function () {
+(function() {
     'use strict';
 
-    // Redirect shorts to normal video
-    if (location.pathname.startsWith("/shorts/")) {
-        const id = location.pathname.split("/shorts/")[1].split("?")[0];
-        if (id) window.location.href = `https://www.youtube.com/watch?v=${id}`;
-    }
-
-    function isShort(element) {
-        if (!element) return false;
-        const aTag = element.querySelector('a[href*="/shorts/"]');
-        const href = element?.href || '';
-        return aTag || href.includes('/shorts/');
-    }
-
     function removeShorts() {
-        document.querySelectorAll('ytd-rich-grid-media, ytd-video-renderer, ytd-grid-video-renderer, ytd-reel-shelf-renderer')
-            .forEach(el => {
-                if (isShort(el)) el.remove();
-            });
+        // All elements with "Shorts" label or link
+        const shortsItems = document.querySelectorAll('ytd-rich-item-renderer a[href*="/shorts/"], ytd-mini-guide-entry-renderer[title="Shorts"]');
+        shortsItems.forEach(item => {
+            item.style.display = 'none';
+        });
     }
 
-    const observer = new MutationObserver(() => removeShorts());
-    observer.observe(document.body, { childList: true, subtree: true });
+    let lastUrl = location.href;
+    new MutationObserver(() => {
+        if (location.href !== lastUrl) {
+            lastUrl = location.href;
+            removeShorts();
+        }
+    }).observe(document.body, {childList: true, subtree: true});
+
+    // Initial removal
     removeShorts();
 })();
